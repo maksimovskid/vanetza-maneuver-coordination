@@ -1,0 +1,167 @@
+MCM-PDU-Descriptions {
+itu-t (0) identified-organization (4) etsi (0) itsDomain (5) wg1 (1) ts (103561) mcm (1) version (1)
+}
+
+DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+IMPORTS
+ItsPduHeader, ReferencePosition, Heading, LanePosition, Speed, StationID, DriveDirection, StationType, VehicleLength, VehicleWidth, Latitude, Longitude, LongitudinalAcceleration, LateralAcceleration, VerticalAcceleration,YawRate
+FROM ITS-Container {itu-t (0) identified-organization (4) etsi (0) itsDomain (5) wg1 (1) ts (102894) cdd (2) version (2)}
+LaneID, RoadSegmentReferenceID
+FROM DSRC { iso (1) standard (0) signalizedIntersection (19091) profilec(2) dsrc (2) version2 (2) }
+GenerationDeltaTime FROM CAM-PDU-Descriptions { itu-t(0) identified-organization(4) etsi(0) itsDomain(5) wg1(1) en(302637) cam(2) version(2)}
+WGS84Angle FROM CPM-PDU-Descriptions {itu-t (0) identified-organization (4) etsi (0) itsDomain (5) wg1 (1) tr (103562) cpm (1) version (1)};
+
+
+--  The root data frame for maneuver coordination message
+
+MCM ::= SEQUENCE {
+    header ItsPduHeader,
+    mcm ManeuverCoordinationMessage 
+}
+
+ManeuverCoordinationMessage ::= SEQUENCE {
+    generationDeltaTime GenerationDeltaTime,
+    mcmParameters McmParameters 
+}
+
+McmParameters ::= SEQUENCE {
+    basicContainerMCM BasicContainerMCM,
+    intentionSharingContainer IntentSharingContainer,
+    maneuverNegotiationContainer ManeuverNegotiationContainer OPTIONAL,
+    maneuverExecutionContainer ManeuverExecutionContainer OPTIONAL,
+    ...
+}
+
+BasicContainerMCM ::= SEQUENCE {
+    stationType StationType,
+    referencePosition ReferencePosition,
+    ...
+}
+
+IntentSharingContainer ::= SEQUENCE {
+    plannedTrajectory TrajectoryMCM,
+    heading Heading,
+    speed Speed,
+    driveDirection DriveDirection,
+    vehicleLength VehicleLength,
+    vehicleWidth VehicleWidth,
+    vehicleAutomationLevel VehicleAutomationLevel,
+    longitudinalAcceleration    LongitudinalAcceleration OPTIONAL,
+    lateralAcceleration         LateralAcceleration OPTIONAL,
+    verticalAcceleration        VerticalAcceleration OPTIONAL,
+    yawRate                     YawRate OPTIONAL,
+    vehicleOrientationAngle     WGS84Angle OPTIONAL,
+    lanePosition LanePosition OPTIONAL, 
+    roadID LaneID OPTIONAL,
+    laneID LaneID OPTIONAL,
+    laneIDEnd LaneID OPTIONAL
+}
+
+ManeuverNegotiationContainer ::= SEQUENCE {
+    mcmCategory McmCategory,
+    priorityManeuver PriorityManeuver,
+    cooperationTypeMCM CooperationTypeMCM,
+    requestID RequestID,
+    requestedTrajectory TrajectoryMCM,
+    offeredTrajectory TrajectoryMCM,
+    alternativeTrajectory TrajectoryMCM OPTIONAL,
+    reasonRequest Reason OPTIONAL,
+    reasonReject ReasonReject OPTIONAL,
+    laneID LaneID OPTIONAL,
+    laneIDTrajEnd LaneID OPTIONAL,
+    cooperationCostTrajectory CooperationCostTrajectory OPTIONAL,
+    numberOfVehicles NumberOfVehicles,
+    negotiationVehicleID1 StationID,
+    negotiationVehicleID2 StationID OPTIONAL
+}
+
+ManeuverExecutionContainer ::= SEQUENCE {
+    mcmCategory McmCategory,
+    priorityManeuver PriorityManeuver,
+    cooperationID CooperationID,
+    cooperationVehicleID1 StationID,
+    cooperationVehicleID2 StationID OPTIONAL
+}
+
+
+VehicleAutomationLevel ::= ENUMERATED {
+notAvailable (0),
+saeLevel1 (1),
+saeLevel2 (2),
+saeLevel3 (3),
+saeLevel4 (4),
+saeLevel5 (5)
+}
+
+McmCategory ::= ENUMERATED {
+request (0),
+accept (1),
+reject (2),
+offer(3),
+confirm (4),
+execute (5),
+cancel (6),
+abort (7),
+cascadingRequest (8),
+cascadingAccept (9),
+cascadingReject (10),
+cascadingExecute (11)
+}
+
+PriorityManeuver ::= ENUMERATED {
+low (0),
+medium (1),
+high (2),
+emergency (3)
+}
+
+CooperationTypeMCM ::= ENUMERATED {
+agreementSeeking (0),
+prescriptive (1),
+interceptionLevel (2),
+roadSafetyLevel (3)
+}
+
+Reason ::= ENUMERATED {
+accelerate (0),
+decelerate (1),
+merging (2),
+laneChange (3),
+overtaking (4)
+}
+
+ReasonReject ::= ENUMERATED {
+refuseRoadSafetyRisk (0),
+refuseCooperationCostTooHigh (1),
+refuseMisbehaviourDetected (2),
+refuseTrafficRulesNotRespected (3),
+offeredRejected (4)
+}
+
+NumberOfVehicles ::= INTEGER (1..4)
+
+CooperationCostTrajectory ::= INTEGER (-10..10)
+
+RequestID ::= INTEGER (0..255)
+
+CooperationID ::= INTEGER (0..255)
+
+TrajectoryMCM ::= SEQUENCE SIZE (1.. 20) OF TrajectoryPointMCM
+
+TrajectoryPointMCM ::= SEQUENCE{
+deltaLongitudinalPosition TrajectoryOffsetPoint,
+deltaLateralPosition TrajectoryOffsetPoint,
+deltaHeading TrajectoryOffsetHeading,
+deltaTime TrajectoryOffsetTime
+}
+
+TrajectoryOffsetPoint ::= INTEGER (-2000000..2000000)
+
+TrajectoryOffsetHeading ::= INTEGER (-1800..1800)
+
+TrajectoryOffsetTime ::= INTEGER (0..30000)
+
+END
