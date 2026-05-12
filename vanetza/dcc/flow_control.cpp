@@ -7,6 +7,8 @@
 #include <vanetza/common/runtime.hpp>
 #include <algorithm>
 
+#include <iostream>
+
 namespace vanetza
 {
 namespace dcc
@@ -61,10 +63,42 @@ void FlowControl::enqueue(const DataRequest& request, std::unique_ptr<ChunkPacke
     const bool first_packet = empty();
     const auto ac = map_profile_onto_ac(request.dcc_profile);
     auto expiry = m_runtime.now() + request.lifetime;
+
     while (m_queue_length > 0 && m_queues[ac].size() >= m_queue_length) {
+        auto& dropped = m_queues[ac].front();
+
+        m_packet_drop_hook(ac, dropped.packet.get());
+
+        mDccDroppedPackets++;
+
+        const auto lifetime_ms = dropped.request.lifetime.count() / 1000;
+
+        if (lifetime_ms == 500) {
+            mDccDroppedPacketsMcmNeg++;
+        }
+        else if (lifetime_ms == 550) {
+            mDccDroppedPacketsMcmExec++;
+        }
+        else if (lifetime_ms == 450) {
+            mDccDroppedPacketsMcmEmerg++;
+        }
+
+        if (ac == vanetza::access::AccessCategory::VO) {
+            mDccDP0DroppedPackets++;
+        }
+        else if (ac == vanetza::access::AccessCategory::VI) {
+            mDccDP1DroppedPackets++;
+        }
+        else if (ac == vanetza::access::AccessCategory::BE) {
+            mDccDP2DroppedPackets++;
+        }
+        else if (ac == vanetza::access::AccessCategory::BK) {
+            mDccDP3DroppedPackets++;
+        }
+
         m_queues[ac].pop_front();
-        m_packet_drop_hook(ac, packet.get());
     }
+
     m_queues[ac].emplace_back(expiry, request, std::move(packet));
 
     if (first_packet) {
@@ -137,11 +171,41 @@ void FlowControl::drop_expired()
     for (auto& kv : m_queues) {
         access::AccessCategory ac = kv.first;
         Queue& queue = kv.second;
+
         queue.remove_if([this, ac](const PendingTransmission& transmission) {
             bool drop = transmission.expiry < m_runtime.now();
+
             if (drop) {
                 m_packet_drop_hook(ac, transmission.packet.get());
+
+                mDccDroppedPackets++;
+
+                const auto lifetime_ms = transmission.request.lifetime.count() / 1000;
+
+                if (lifetime_ms == 500) {
+                    mDccDroppedPacketsMcmNeg++;
+                }
+                else if (lifetime_ms == 550) {
+                    mDccDroppedPacketsMcmExec++;
+                }
+                else if (lifetime_ms == 450) {
+                    mDccDroppedPacketsMcmEmerg++;
+                }
+
+                if (ac == vanetza::access::AccessCategory::VO) {
+                    mDccDP0DroppedPackets++;
+                }
+                else if (ac == vanetza::access::AccessCategory::VI) {
+                    mDccDP1DroppedPackets++;
+                }
+                else if (ac == vanetza::access::AccessCategory::BE) {
+                    mDccDP2DroppedPackets++;
+                }
+                else if (ac == vanetza::access::AccessCategory::BK) {
+                    mDccDP3DroppedPackets++;
+                }
             }
+
             return drop;
         });
     }
@@ -157,6 +221,30 @@ void FlowControl::transmit(const DataRequest& request, std::unique_ptr<ChunkPack
 
     m_packet_transmit_hook(access_request.access_category, packet.get());
     m_access.request(access_request, std::move(packet));
+    mDccTransmittedPackets++;
+    //std::cout << "request lifetime: " << request.lifetime.count() / 1000 << " ms"<<std::endl;
+    if (request.lifetime.count() / 1000 == 500){
+        mDccTransmittedPacketsMcmNeg++; 
+    }
+    else if (request.lifetime.count() / 1000 == 550){
+        mDccTransmittedPacketsMcmExec++; 
+    }
+    else if (request.lifetime.count() / 1000 == 450){
+        mDccTransmittedPacketsMcmEmerg++; 
+    }
+    if (access_request.access_category == vanetza::access::AccessCategory::VO){
+        mDccDP0TransmittedPackets++; 
+    }
+    else if (access_request.access_category == vanetza::access::AccessCategory::VI){
+        mDccDP1TransmittedPackets++; 
+    }
+    else if (access_request.access_category == vanetza::access::AccessCategory::BE){
+        mDccDP2TransmittedPackets++; 
+    }
+    else if (access_request.access_category == vanetza::access::AccessCategory::BK){
+        mDccDP3TransmittedPackets++; 
+    }
+    // std::cout << "number of transmitted packets: " << mDccTransmittedPackets << std::endl;
 }
 
 void FlowControl::set_packet_drop_hook(PacketDropHook::callback_type&& cb)

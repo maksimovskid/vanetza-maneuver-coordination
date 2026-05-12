@@ -82,6 +82,24 @@ public:
      */
     void reschedule();
 
+    unsigned mDccTransmittedPackets = 0;  
+    unsigned mDccDP0TransmittedPackets = 0; 
+    unsigned mDccDP1TransmittedPackets = 0; 
+    unsigned mDccDP2TransmittedPackets = 0; 
+    unsigned mDccDP3TransmittedPackets = 0; 
+    unsigned mDccDroppedPackets = 0;
+    unsigned mDccDP0DroppedPackets = 0;
+    unsigned mDccDP1DroppedPackets = 0;
+    unsigned mDccDP2DroppedPackets = 0;
+    unsigned mDccDP3DroppedPackets = 0;
+    unsigned getDccTransmittedPackets(); 
+    unsigned getDccDroppedPackets();
+    unsigned mDccTransmittedPacketsMcmNeg = 0;
+    unsigned mDccTransmittedPacketsMcmExec = 0;
+    unsigned mDccTransmittedPacketsMcmEmerg = 0;
+    unsigned mDccDroppedPacketsMcmNeg = 0;
+    unsigned mDccDroppedPacketsMcmExec = 0;
+    unsigned mDccDroppedPacketsMcmEmerg = 0;
 private:
     struct PendingTransmission : public Transmission
     {
