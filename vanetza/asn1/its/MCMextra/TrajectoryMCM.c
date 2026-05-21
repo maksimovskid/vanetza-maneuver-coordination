@@ -12,9 +12,20 @@ static asn_TYPE_member_t asn_MBR_TrajectoryMCM_1[] = {
 		(ASN_TAG_CLASS_UNIVERSAL | (16 << 2)),
 		0,
 		&asn_DEF_TrajectoryPointMCM,
-		0,	/* Defer constraints checking to the member type */
-		0,	/* PER is not compiled, use -gen-PER */
 		0,
+		{
+#if !defined(ASN_DISABLE_OER_SUPPORT)
+			0,
+#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
+#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
+			0,
+#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
+#if !defined(ASN_DISABLE_JER_SUPPORT)
+			0,
+#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
+			0
+		},
+		0, 0, /* No default value */
 		""
 		},
 };
@@ -29,22 +40,25 @@ static asn_SET_OF_specifics_t asn_SPC_TrajectoryMCM_specs_1 = {
 asn_TYPE_descriptor_t asn_DEF_TrajectoryMCM = {
 	"TrajectoryMCM",
 	"TrajectoryMCM",
-	SEQUENCE_OF_free,
-	SEQUENCE_OF_print,
-	SEQUENCE_OF_constraint,
-	SEQUENCE_OF_decode_ber,
-	SEQUENCE_OF_encode_der,
-	SEQUENCE_OF_decode_xer,
-	SEQUENCE_OF_encode_xer,
-	0, 0,	/* No PER support, use "-gen-PER" to enable */
-	0,	/* Use generic outmost tag fetcher */
+	&asn_OP_SEQUENCE_OF,
 	asn_DEF_TrajectoryMCM_tags_1,
 	sizeof(asn_DEF_TrajectoryMCM_tags_1)
 		/sizeof(asn_DEF_TrajectoryMCM_tags_1[0]), /* 1 */
 	asn_DEF_TrajectoryMCM_tags_1,	/* Same as above */
 	sizeof(asn_DEF_TrajectoryMCM_tags_1)
 		/sizeof(asn_DEF_TrajectoryMCM_tags_1[0]), /* 1 */
-	0,	/* No PER visible constraints */
+	{
+#if !defined(ASN_DISABLE_OER_SUPPORT)
+		0,
+#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
+#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
+		0,
+#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
+#if !defined(ASN_DISABLE_JER_SUPPORT)
+		0,
+#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
+		SEQUENCE_OF_constraint
+	},
 	asn_MBR_TrajectoryMCM_1,
 	1,	/* Single element */
 	&asn_SPC_TrajectoryMCM_specs_1	/* Additional specs */

@@ -3,7 +3,7 @@
 
 #include <vanetza/asn1/asn1c_conversion.hpp>
 #include <vanetza/asn1/asn1c_wrapper.hpp>
-#include <vanetza/asn1/its/MCM.h>
+#include <vanetza/asn1/its/MCMextra/MCM.h>
 
 namespace vanetza
 {
@@ -21,4 +21,3 @@ public:
 } // namespace vanetza
 
 #endif /* MCM_HPP_WXYNEKFN */
-
