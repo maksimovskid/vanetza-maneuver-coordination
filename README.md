@@ -11,6 +11,23 @@ This comprises the following protocols and features among others:
 
 Though originally designed to operate on ITS-G5 channels in a Vehicular Ad Hoc Network (VANET) using IEEE 802.11p, Vanetza and its components can be combined with other communication technologies as well, e.g. GeoNetworking over IP multicast or C-V2X.
 
+## Maneuver Coordination Message Extension
+
+This fork includes extensions related to the Maneuver Coordination Message (MCM) for V2X-based maneuver sharing and coordination. The implementation is part of the maneuver coordination work by Daniel Maksimovski and is based on the MCM concept described in the ITSC 2023 paper "Decentralized V2X Maneuver Sharing and Coordination Message for Cooperative Driving: Analysis in Mixed Traffic".
+
+This fork supports the related Artery maneuver coordination implementation. It is currently under active development and should be considered work in progress.
+
+```bibtex
+@INPROCEEDINGS{Maksimovski-ITSC2023,
+  author={Maksimovski, Daniel and Facchi, Christian},
+  booktitle={2023 IEEE 26th International Conference on Intelligent Transportation Systems (ITSC)},
+  title={Decentralized {V2X} Maneuver Sharing and Coordination Message for Cooperative Driving: Analysis in Mixed Traffic},
+  pages={5182-5189},
+  year={2023},
+  doi={10.1109/ITSC57777.2023.10421976},
+}
+```
+
 ## How to build
 
 Building Vanetza is accomplished by the CMake build system. Hence, CMake needs to be available on the build host.
