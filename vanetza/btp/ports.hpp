@@ -37,6 +37,8 @@ static const port_type EC_AT_REQUEST = host_cast<uint16_t>(2016);
 static const port_type MCDM = host_cast<uint16_t>(2017);
 static const port_type VAM = host_cast<uint16_t>(2018);
 static const port_type IMZM = host_cast<uint16_t>(2019);
+// Experimental port for Maneuver Coordination Message (MCM), not defined by ETSI TS.
+static const port_type MCM = host_cast<uint16_t>(2020);
 static const port_type DSM = host_cast<uint16_t>(2020);
 static const port_type P2P_CRL = host_cast<uint16_t>(2021);
 static const port_type P2P_DCTL = host_cast<uint16_t>(2022);
@@ -52,4 +54,3 @@ static const port_type MVM = host_cast<uint16_t>(2026);
 } // namespace vanetza
 
 #endif /* PORTS_HPP_T2IEFSSC */
-
