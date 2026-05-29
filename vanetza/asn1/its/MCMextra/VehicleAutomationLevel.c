@@ -6,6 +6,42 @@
 
 #include "VehicleAutomationLevel.h"
 
+/*
+ * This type is implemented using NativeEnumerated,
+ * so here we adjust the DEF accordingly.
+ */
+#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
+asn_per_constraints_t asn_PER_type_VehicleAutomationLevel_constr_1 CC_NOTUSED = {
+	{ APC_CONSTRAINED,	 3,  3,  0,  5 }	/* (0..5) */,
+	{ APC_UNCONSTRAINED,	-1, -1,  0,  0 },
+	0, 0	/* No PER value map */
+};
+#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
+static const asn_INTEGER_enum_map_t asn_MAP_VehicleAutomationLevel_value2enum_1[] = {
+	{ 0,	12,	"notAvailable" },
+	{ 1,	9,	"saeLevel1" },
+	{ 2,	9,	"saeLevel2" },
+	{ 3,	9,	"saeLevel3" },
+	{ 4,	9,	"saeLevel4" },
+	{ 5,	9,	"saeLevel5" }
+};
+static const unsigned int asn_MAP_VehicleAutomationLevel_enum2value_1[] = {
+	0,	/* notAvailable(0) */
+	1,	/* saeLevel1(1) */
+	2,	/* saeLevel2(2) */
+	3,	/* saeLevel3(3) */
+	4,	/* saeLevel4(4) */
+	5	/* saeLevel5(5) */
+};
+const asn_INTEGER_specifics_t asn_SPC_VehicleAutomationLevel_specs_1 = {
+	asn_MAP_VehicleAutomationLevel_value2enum_1,	/* "tag" => N; sorted by tag */
+	asn_MAP_VehicleAutomationLevel_enum2value_1,	/* N => "tag"; sorted by N */
+	6,	/* Number of elements in the maps */
+	0,	/* Enumeration is not extensible */
+	1,	/* Strict enumeration */
+	0,	/* Native long size */
+	0
+};
 static const ber_tlv_tag_t asn_DEF_VehicleAutomationLevel_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (10 << 2))
 };
@@ -24,13 +60,13 @@ asn_TYPE_descriptor_t asn_DEF_VehicleAutomationLevel = {
 		0,
 #endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
 #if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
+		&asn_PER_type_VehicleAutomationLevel_constr_1,
 #endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
 #if !defined(ASN_DISABLE_JER_SUPPORT)
 		0,
 #endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		0
+		NativeEnumerated_constraint
 	},
 	0, 0,	/* Defined elsewhere */
-	0	/* No specifics */
+	&asn_SPC_VehicleAutomationLevel_specs_1	/* Additional specs */
 };
