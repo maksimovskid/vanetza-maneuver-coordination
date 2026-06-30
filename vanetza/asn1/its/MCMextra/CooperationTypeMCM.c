@@ -6,6 +6,38 @@
 
 #include "CooperationTypeMCM.h"
 
+/*
+ * This type is implemented using NativeEnumerated,
+ * so here we adjust the DEF accordingly.
+ */
+#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
+asn_per_constraints_t asn_PER_type_CooperationTypeMCM_constr_1 CC_NOTUSED = {
+	{ APC_CONSTRAINED,	 2,  2,  0,  3 }	/* (0..3) */,
+	{ APC_UNCONSTRAINED,	-1, -1,  0,  0 },
+	0, 0	/* No PER value map */
+};
+#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
+static const asn_INTEGER_enum_map_t asn_MAP_CooperationTypeMCM_value2enum_1[] = {
+	{ 0,	16,	"agreementSeeking" },
+	{ 1,	12,	"prescriptive" },
+	{ 2,	17,	"interceptionLevel" },
+	{ 3,	15,	"roadSafetyLevel" }
+};
+static const unsigned int asn_MAP_CooperationTypeMCM_enum2value_1[] = {
+	0,	/* agreementSeeking(0) */
+	1,	/* prescriptive(1) */
+	2,	/* interceptionLevel(2) */
+	3	/* roadSafetyLevel(3) */
+};
+const asn_INTEGER_specifics_t asn_SPC_CooperationTypeMCM_specs_1 = {
+	asn_MAP_CooperationTypeMCM_value2enum_1,	/* "tag" => N; sorted by tag */
+	asn_MAP_CooperationTypeMCM_enum2value_1,	/* N => "tag"; sorted by N */
+	4,	/* Number of elements in the maps */
+	0,	/* Enumeration is not extensible */
+	1,	/* Strict enumeration */
+	0,	/* Native long size */
+	0
+};
 static const ber_tlv_tag_t asn_DEF_CooperationTypeMCM_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (10 << 2))
 };
@@ -24,13 +56,13 @@ asn_TYPE_descriptor_t asn_DEF_CooperationTypeMCM = {
 		0,
 #endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
 #if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
+		&asn_PER_type_CooperationTypeMCM_constr_1,
 #endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
 #if !defined(ASN_DISABLE_JER_SUPPORT)
 		0,
 #endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		0
+		NativeEnumerated_constraint
 	},
 	0, 0,	/* Defined elsewhere */
-	0	/* No specifics */
+	&asn_SPC_CooperationTypeMCM_specs_1	/* Additional specs */
 };

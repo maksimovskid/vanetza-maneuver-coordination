@@ -6,6 +6,38 @@
 
 #include "PriorityManeuver.h"
 
+/*
+ * This type is implemented using NativeEnumerated,
+ * so here we adjust the DEF accordingly.
+ */
+#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
+asn_per_constraints_t asn_PER_type_PriorityManeuver_constr_1 CC_NOTUSED = {
+	{ APC_CONSTRAINED,	 2,  2,  0,  3 }	/* (0..3) */,
+	{ APC_UNCONSTRAINED,	-1, -1,  0,  0 },
+	0, 0	/* No PER value map */
+};
+#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
+static const asn_INTEGER_enum_map_t asn_MAP_PriorityManeuver_value2enum_1[] = {
+	{ 0,	3,	"low" },
+	{ 1,	6,	"medium" },
+	{ 2,	4,	"high" },
+	{ 3,	9,	"emergency" }
+};
+static const unsigned int asn_MAP_PriorityManeuver_enum2value_1[] = {
+	0,	/* low(0) */
+	1,	/* medium(1) */
+	2,	/* high(2) */
+	3	/* emergency(3) */
+};
+const asn_INTEGER_specifics_t asn_SPC_PriorityManeuver_specs_1 = {
+	asn_MAP_PriorityManeuver_value2enum_1,	/* "tag" => N; sorted by tag */
+	asn_MAP_PriorityManeuver_enum2value_1,	/* N => "tag"; sorted by N */
+	4,	/* Number of elements in the maps */
+	0,	/* Enumeration is not extensible */
+	1,	/* Strict enumeration */
+	0,	/* Native long size */
+	0
+};
 static const ber_tlv_tag_t asn_DEF_PriorityManeuver_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (10 << 2))
 };
@@ -24,13 +56,13 @@ asn_TYPE_descriptor_t asn_DEF_PriorityManeuver = {
 		0,
 #endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
 #if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
+		&asn_PER_type_PriorityManeuver_constr_1,
 #endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
 #if !defined(ASN_DISABLE_JER_SUPPORT)
 		0,
 #endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		0
+		NativeEnumerated_constraint
 	},
 	0, 0,	/* Defined elsewhere */
-	0	/* No specifics */
+	&asn_SPC_PriorityManeuver_specs_1	/* Additional specs */
 };

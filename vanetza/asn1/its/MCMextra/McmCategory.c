@@ -6,6 +6,54 @@
 
 #include "McmCategory.h"
 
+/*
+ * This type is implemented using NativeEnumerated,
+ * so here we adjust the DEF accordingly.
+ */
+#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
+asn_per_constraints_t asn_PER_type_McmCategory_constr_1 CC_NOTUSED = {
+	{ APC_CONSTRAINED,	 4,  4,  0,  11 }	/* (0..11) */,
+	{ APC_UNCONSTRAINED,	-1, -1,  0,  0 },
+	0, 0	/* No PER value map */
+};
+#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
+static const asn_INTEGER_enum_map_t asn_MAP_McmCategory_value2enum_1[] = {
+	{ 0,	7,	"request" },
+	{ 1,	6,	"accept" },
+	{ 2,	6,	"reject" },
+	{ 3,	5,	"offer" },
+	{ 4,	7,	"confirm" },
+	{ 5,	7,	"execute" },
+	{ 6,	6,	"cancel" },
+	{ 7,	5,	"abort" },
+	{ 8,	16,	"cascadingRequest" },
+	{ 9,	15,	"cascadingAccept" },
+	{ 10,	15,	"cascadingReject" },
+	{ 11,	16,	"cascadingExecute" }
+};
+static const unsigned int asn_MAP_McmCategory_enum2value_1[] = {
+	0,	/* request(0) */
+	1,	/* accept(1) */
+	2,	/* reject(2) */
+	3,	/* offer(3) */
+	4,	/* confirm(4) */
+	5,	/* execute(5) */
+	6,	/* cancel(6) */
+	7,	/* abort(7) */
+	8,	/* cascadingRequest(8) */
+	9,	/* cascadingAccept(9) */
+	10,	/* cascadingReject(10) */
+	11	/* cascadingExecute(11) */
+};
+const asn_INTEGER_specifics_t asn_SPC_McmCategory_specs_1 = {
+	asn_MAP_McmCategory_value2enum_1,	/* "tag" => N; sorted by tag */
+	asn_MAP_McmCategory_enum2value_1,	/* N => "tag"; sorted by N */
+	12,	/* Number of elements in the maps */
+	0,	/* Enumeration is not extensible */
+	1,	/* Strict enumeration */
+	0,	/* Native long size */
+	0
+};
 static const ber_tlv_tag_t asn_DEF_McmCategory_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (10 << 2))
 };
@@ -24,13 +72,13 @@ asn_TYPE_descriptor_t asn_DEF_McmCategory = {
 		0,
 #endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
 #if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
+		&asn_PER_type_McmCategory_constr_1,
 #endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
 #if !defined(ASN_DISABLE_JER_SUPPORT)
 		0,
 #endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		0
+		NativeEnumerated_constraint
 	},
 	0, 0,	/* Defined elsewhere */
-	0	/* No specifics */
+	&asn_SPC_McmCategory_specs_1	/* Additional specs */
 };
