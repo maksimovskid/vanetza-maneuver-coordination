@@ -350,12 +350,13 @@ static const asn_TYPE_tag2member_t asn_MAP_IntentSharingContainer_tag2el_1[] = {
     { (ASN_TAG_CLASS_CONTEXT | (14 << 2)), 14, 0, 0 }, /* laneID */
     { (ASN_TAG_CLASS_CONTEXT | (15 << 2)), 15, 0, 0 } /* laneIDEnd */
 };
+static const int asn_MAP_IntentSharingContainer_oms_1[] = { 7, 8, 9, 10, 11, 12, 13, 14, 15 };
 static asn_SEQUENCE_specifics_t asn_SPC_IntentSharingContainer_specs_1 = {
 	sizeof(struct IntentSharingContainer),
 	offsetof(struct IntentSharingContainer, _asn_ctx),
 	asn_MAP_IntentSharingContainer_tag2el_1,
 	16,	/* Count of tags in the map */
-	0, 0, 0,	/* Optional elements (not needed) */
+	asn_MAP_IntentSharingContainer_oms_1, 9, 0, /* Existing optional root / extension members */
 	-1,	/* First extension addition */
 };
 asn_TYPE_descriptor_t asn_DEF_IntentSharingContainer = {

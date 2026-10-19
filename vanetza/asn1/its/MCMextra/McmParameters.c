@@ -98,12 +98,13 @@ static const asn_TYPE_tag2member_t asn_MAP_McmParameters_tag2el_1[] = {
     { (ASN_TAG_CLASS_CONTEXT | (2 << 2)), 2, 0, 0 }, /* maneuverNegotiationContainer */
     { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 3, 0, 0 } /* maneuverExecutionContainer */
 };
+static const int asn_MAP_McmParameters_oms_1[] = { 2, 3 };
 static asn_SEQUENCE_specifics_t asn_SPC_McmParameters_specs_1 = {
 	sizeof(struct McmParameters),
 	offsetof(struct McmParameters, _asn_ctx),
 	asn_MAP_McmParameters_tag2el_1,
 	4,	/* Count of tags in the map */
-	0, 0, 0,	/* Optional elements (not needed) */
+	asn_MAP_McmParameters_oms_1, 1, 1, /* Existing optional root / extension members */
 	3,	/* First extension addition */
 };
 asn_TYPE_descriptor_t asn_DEF_McmParameters = {

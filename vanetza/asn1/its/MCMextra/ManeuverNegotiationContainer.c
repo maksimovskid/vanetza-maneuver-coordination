@@ -329,12 +329,13 @@ static const asn_TYPE_tag2member_t asn_MAP_ManeuverNegotiationContainer_tag2el_1
     { (ASN_TAG_CLASS_CONTEXT | (13 << 2)), 13, 0, 0 }, /* negotiationVehicleID1 */
     { (ASN_TAG_CLASS_CONTEXT | (14 << 2)), 14, 0, 0 } /* negotiationVehicleID2 */
 };
+static const int asn_MAP_ManeuverNegotiationContainer_oms_1[] = { 6, 7, 8, 9, 10, 11, 14 };
 static asn_SEQUENCE_specifics_t asn_SPC_ManeuverNegotiationContainer_specs_1 = {
 	sizeof(struct ManeuverNegotiationContainer),
 	offsetof(struct ManeuverNegotiationContainer, _asn_ctx),
 	asn_MAP_ManeuverNegotiationContainer_tag2el_1,
 	15,	/* Count of tags in the map */
-	0, 0, 0,	/* Optional elements (not needed) */
+	asn_MAP_ManeuverNegotiationContainer_oms_1, 7, 0, /* Existing optional root / extension members */
 	-1,	/* First extension addition */
 };
 asn_TYPE_descriptor_t asn_DEF_ManeuverNegotiationContainer = {

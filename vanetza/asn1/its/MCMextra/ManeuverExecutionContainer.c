@@ -119,12 +119,13 @@ static const asn_TYPE_tag2member_t asn_MAP_ManeuverExecutionContainer_tag2el_1[]
     { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 3, 0, 0 }, /* cooperationVehicleID1 */
     { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 4, 0, 0 } /* cooperationVehicleID2 */
 };
+static const int asn_MAP_ManeuverExecutionContainer_oms_1[] = { 4 };
 static asn_SEQUENCE_specifics_t asn_SPC_ManeuverExecutionContainer_specs_1 = {
 	sizeof(struct ManeuverExecutionContainer),
 	offsetof(struct ManeuverExecutionContainer, _asn_ctx),
 	asn_MAP_ManeuverExecutionContainer_tag2el_1,
 	5,	/* Count of tags in the map */
-	0, 0, 0,	/* Optional elements (not needed) */
+	asn_MAP_ManeuverExecutionContainer_oms_1, 1, 0, /* Existing optional root / extension members */
 	-1,	/* First extension addition */
 };
 asn_TYPE_descriptor_t asn_DEF_ManeuverExecutionContainer = {
