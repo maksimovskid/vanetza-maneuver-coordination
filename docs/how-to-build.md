@@ -6,13 +6,13 @@ Building Vanetza is accomplished by the [CMake](https://cmake.org) build system.
 
 You need following tools and libraries on your system for compiling Vanetza:
 
-* C++11 compatible compiler, e.g. [GNU GCC](https://gcc.gnu.org) or [Clang](http://clang.llvm.org)
+* C++14 compatible compiler, e.g. [GNU GCC](https://gcc.gnu.org) or [Clang](http://clang.llvm.org) (the parent Artery project requires C++17)
 * [CMake](https://cmake.org) 3.12 or higher
-* [Boost](https://www.boost.org) 1.58 or higher
-* [GeographicLib](http://geographiclib.sourceforge.net) 1.37 or higher
-* [Crypto++](https://www.cryptopp.com) 5.6.1 or higher
+* [Boost](https://www.boost.org) 1.70 or higher, including `date_time`
+* Optional [GeographicLib](http://geographiclib.sourceforge.net) 1.37 or higher
+* Optional [Crypto++](https://www.cryptopp.com) 5.6.1 or higher
 
-If OpenSSL (1.0 or 1.1) or LibreSSL is available on your system, an alternative security backend implementation is compiled along with the Crypto++ based backend.
+If OpenSSL 1.1.1 or higher is available, CMake can enable an alternative security backend. Optional backends depend on the corresponding CMake options and detected libraries.
 See `security::Backend` and `security::create_backend` for more details.
 
 !!! hint
